@@ -36,7 +36,7 @@ jobs:
       contents: read
     env:
       IMAGE_NAME: hello-release-please
-      TAG_NAME: ${{ needs.release-please.outputs.tag_name }
+      TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
