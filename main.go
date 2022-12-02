@@ -19,7 +19,7 @@ func main() {
 			version = "devel"
 		}
 
-		fmt.Printf("%s\n", version)
+		fmt.Printf("hello-release-please %s\n", version)
 		os.Exit(0)
 	}
 
