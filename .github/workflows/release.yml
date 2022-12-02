@@ -11,6 +11,9 @@ on:
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release-please.outputs.release_created }}
+      tag_name: ${{ steps.release-please.outputs.tag_name }}
     steps:
       - name: Run release-please
         id: release-please
@@ -22,12 +25,14 @@ jobs:
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false}]'
 
   publish-image:
+    needs: release-please
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
     env:
       IMAGE_NAME: hello-release-please
+      TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -45,12 +50,17 @@ jobs:
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
-          # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          # Use the tag name provided by release-please, if any.
+          if [ -n "$TAG_NAME"]; then
+            VERSION="$TAG_NAME"
+          else
+            # Strip git ref prefix from version
+            VERSION="$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')"
 
-          # Use Docker `latest` tag convention for `main` branch
-          if [ "$VERSION" == "main" ]; then
-            VERSION=latest
+            # Use Docker `latest` tag convention for `main` branch
+            if [ "$VERSION" == "main" ]; then
+              VERSION=latest
+            fi
           fi
 
           echo IMAGE_ID=$IMAGE_ID
@@ -60,11 +70,14 @@ jobs:
           docker push $IMAGE_ID:$VERSION
 
   publish-binaries:
-    if: startsWith(github.ref, 'refs/tags/')
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.release-please.outputs.tag_name }}
 
       - name: Unshallow
         run: git fetch --prune --unshallow
