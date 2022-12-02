@@ -20,6 +20,7 @@ archives:
     files:
       - none*
 release:
+  mode: keep-existing
   github:
     owner: Bonial-International-GmbH
     name: hello-release-please
