@@ -12,6 +12,10 @@ var showVersion bool
 
 func main() {
 	flag.BoolVar(&showVersion, "version", false, "Display the version and exit")
+	flag.Usage = func() {
+		fmt.Println("Usage: hello-release-please <name> [flags...]\n\nFlags:")
+		flag.PrintDefaults()
+	}
 	flag.Parse()
 
 	if showVersion {
@@ -23,5 +27,10 @@ func main() {
 		os.Exit(0)
 	}
 
-	fmt.Println("hello release-please")
+	if flag.NArg() != 1 {
+		flag.Usage()
+		os.Exit(1)
+	}
+
+	fmt.Printf("hello %s\n", flag.Arg(0))
 }
