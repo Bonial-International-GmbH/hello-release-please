@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.3](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.0.2...v0.0.3) (2022-12-02)
+
+
+### Bug Fixes
+
+* **release:** correct syntax error ([6eed098](https://github.com/Bonial-International-GmbH/hello-release-please/commit/6eed0987fd67c540fc75f5250817bbc78a722490))
+* **release:** publish binaries if release was created ([ed7957f](https://github.com/Bonial-International-GmbH/hello-release-please/commit/ed7957f0b7d21dd80f37d5b3219a699419db7cf7))
+
 ## [0.0.2](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.0.1...v0.0.2) (2022-12-02)
 
 
