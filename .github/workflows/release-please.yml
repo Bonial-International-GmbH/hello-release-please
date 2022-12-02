@@ -1,0 +1,68 @@
+---
+name: release-please
+on:
+  workflow_dispatch:
+    inputs:
+      force-publish-image:
+        required: true
+        type: boolean
+        description: Publish image even if no new release was created.
+  push:
+    branches:
+      - main
+
+env:
+  IMAGE_NAME: hello-release-please
+
+jobs:
+  release-please:
+    runs-on: ubuntu-20.04
+    outputs:
+      release_created: ${{ steps.release-please.outputs.release_created }}
+    steps:
+      - name: Run release-please
+        id: release-please
+        uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: go
+          bump-minor-pre-major: true
+          package-name: hello-release-please
+          changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false}]'
+
+  publish-image:
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created || github.event.inputs.force-publish-image == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build image
+        run: docker build -f Dockerfile -t $IMAGE_NAME .
+
+      - name: Login to ghcr.io
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Push image
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+          # Use Docker `latest` tag convention for `main` branch
+          if [ "$VERSION" == "main" ]; then
+            VERSION=latest
+          fi
+
+          echo IMAGE_ID=$IMAGE_ID
+          echo VERSION=$VERSION
+
+          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION
