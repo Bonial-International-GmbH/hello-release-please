@@ -49,9 +49,10 @@ jobs:
 
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          VERSION=""
 
           # Use the tag name provided by release-please, if any.
-          if [ -n "$TAG_NAME"]; then
+          if [ -n "$TAG_NAME" ]; then
             VERSION="$TAG_NAME"
           else
             # Strip git ref prefix from version
