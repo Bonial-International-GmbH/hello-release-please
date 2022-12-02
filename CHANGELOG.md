@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.0.3...v0.1.0) (2022-12-02)
+
+
+### Features
+
+* add `--version` flag ([e57ed82](https://github.com/Bonial-International-GmbH/hello-release-please/commit/e57ed824f471d502a2dec1a266f216d7ecf1dae2))
+
 ## [0.0.3](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.0.2...v0.0.3) (2022-12-02)
 
 
