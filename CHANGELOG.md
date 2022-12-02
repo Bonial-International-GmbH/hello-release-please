@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.1.0...v0.1.1) (2022-12-02)
+
+
+### Bug Fixes
+
+* display name next to version ([2eb08b2](https://github.com/Bonial-International-GmbH/hello-release-please/commit/2eb08b2aaaeef3db6e1a6b79ab5bbdfc09f237df))
+
 ## [0.1.0](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.0.3...v0.1.0) (2022-12-02)
 
 
