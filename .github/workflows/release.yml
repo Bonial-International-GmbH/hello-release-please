@@ -10,9 +10,7 @@ on:
 
 jobs:
   release-please:
-    runs-on: ubuntu-20.04
-    outputs:
-      tag_name: ${{ steps.release-please.outputs.tag_name }}
+    runs-on: ubuntu-latest
     steps:
       - name: Run release-please
         id: release-please
@@ -24,14 +22,12 @@ jobs:
           changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false}]'
 
   publish-image:
-    needs: release-please
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
     env:
       IMAGE_NAME: hello-release-please
-      TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -49,17 +45,6 @@ jobs:
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
-          # Push the image for the tag created by release-please, if any.
-          if [ -n "$TAG_NAME" ]; then
-            echo IMAGE_ID=$IMAGE_ID
-            echo VERSION=$TAG_NAME
-
-            docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-            docker push $IMAGE_ID:$VERSION
-          fi
-
-          # Push the image for the git ref.
-          #
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
 
