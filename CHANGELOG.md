@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.2.0](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.1.1...v0.2.0) (2022-12-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* The `hello-release-please` command now requires a mandatory `name` argument.
+
+### Features
+
+* require name argument ([03d915a](https://github.com/Bonial-International-GmbH/hello-release-please/commit/03d915abffe603fa6f49a07a7c553b6271177106))
+
+
+### Miscellaneous
+
+* **deps:** bump golangci/golangci-lint-action from 3.2.0 to 3.3.1 ([#3](https://github.com/Bonial-International-GmbH/hello-release-please/issues/3)) ([f07ee63](https://github.com/Bonial-International-GmbH/hello-release-please/commit/f07ee63ce4b01ffbd980000d95c9e6dea605847f))
+
 ## [0.1.1](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.1.0...v0.1.1) (2022-12-02)
 
 
