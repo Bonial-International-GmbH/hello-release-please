@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.2.0...v0.2.1) (2022-12-15)
+
+
+### Miscellaneous
+
+* **deps:** bump actions/cache from 3.0.4 to 3.0.11 ([#2](https://github.com/Bonial-International-GmbH/hello-release-please/issues/2)) ([ea6a0e5](https://github.com/Bonial-International-GmbH/hello-release-please/commit/ea6a0e56993de3def492494ba5658a2607e9212a))
+
 ## [0.2.0](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.1.1...v0.2.0) (2022-12-02)
 
 
