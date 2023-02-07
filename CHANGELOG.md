@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.3](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.2.2...v0.2.3) (2023-02-07)
+
+
+### Miscellaneous
+
+* **deps:** bump actions/cache from 3.2.2 to 3.2.4 ([#14](https://github.com/Bonial-International-GmbH/hello-release-please/issues/14)) ([e8febb8](https://github.com/Bonial-International-GmbH/hello-release-please/commit/e8febb88c18118c863cd8e4e89ae9d024896ef36))
+* **deps:** bump golangci/golangci-lint-action from 3.3.1 to 3.4.0 ([#13](https://github.com/Bonial-International-GmbH/hello-release-please/issues/13)) ([956e81a](https://github.com/Bonial-International-GmbH/hello-release-please/commit/956e81a682828c0cd751081598ab6f4672f2e412))
+
 ## [0.2.2](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.2.1...v0.2.2) (2023-01-10)
 
 
