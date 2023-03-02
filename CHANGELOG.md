@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.5](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.2.4...v0.2.5) (2023-03-02)
+
+
+### Miscellaneous
+
+* disable dependabot for now ([#18](https://github.com/Bonial-International-GmbH/hello-release-please/issues/18)) ([160b690](https://github.com/Bonial-International-GmbH/hello-release-please/commit/160b6904b29a00b0d2b2ec11f52ea15e1b6fa00a))
+
 ## [0.2.4](https://github.com/Bonial-International-GmbH/hello-release-please/compare/v0.2.3...v0.2.4) (2023-03-01)
 
 
