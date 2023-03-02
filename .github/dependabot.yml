@@ -3,6 +3,7 @@ version: 2
 updates:
   - package-ecosystem: "gomod"
     directory: "/"
+    open-pull-requests-limit: 0  # Package updates are disabled for now.
     schedule:
       interval: "monthly"
       day: "monday"
@@ -14,6 +15,7 @@ updates:
       include: "scope"
   - package-ecosystem: "github-actions"
     directory: "/"
+    open-pull-requests-limit: 0  # Package updates are disabled for now.
     schedule:
       interval: "monthly"
       day: "monday"
